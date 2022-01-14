@@ -9,7 +9,11 @@ void main() {
         ),
         backgroundColor: getStatusColor(true),
       ),
-      body: Image(image: getStatusImage(true),),
+      body: Center(
+          child: Image(
+            image: getStatusImage(true),
+          ),
+      ),
       backgroundColor: getStatusColor(true),
       ),
     ),
