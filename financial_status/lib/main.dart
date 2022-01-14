@@ -8,7 +8,6 @@ void main() {
         ),
         backgroundColor: getAppBarColor(true),
       ),
-      backgroundColor: getAppBarColor(true),
       ),
     ),
   );
