@@ -1,22 +1,35 @@
 import 'package:flutter/material.dart';
 
+bool isRich = true;
+
 void main() {
+  runCustomApp(true);
+}
+
+void runCustomApp(bool isRich) {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(
         title: Center(
-            child: Text(getStatusText(true))
+            child: Text(getStatusText(isRich))
         ),
-        backgroundColor: getStatusColor(true),
+        backgroundColor: getStatusColor(isRich),
       ),
       body: Center(
-          child: Image(
-            image: getStatusImage(true),
-          ),
+        child: Image(
+          image: getStatusImage(isRich),
+        ),
       ),
-      backgroundColor: getStatusColor(true),
+      backgroundColor: getStatusColor(isRich),
+      bottomNavigationBar: BottomAppBar(
+        color: getStatusColor(isRich),
+        child: Switch(value: isRich, onChanged: (bool newValue) {
+          isRich = newValue;
+          runCustomApp(isRich);
+        }),
       ),
     ),
+  ),
   );
 }
 
