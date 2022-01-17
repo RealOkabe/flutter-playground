@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 bool isRich = true;
@@ -23,10 +24,16 @@ void runCustomApp(bool isRich) {
       backgroundColor: getStatusColor(isRich),
       bottomNavigationBar: BottomAppBar(
         color: getStatusColor(isRich),
-        child: Switch(value: isRich, onChanged: (bool newValue) {
-          isRich = newValue;
-          runCustomApp(isRich);
-        }),
+        child: Row(children: [
+          const Text("Poor"),
+          Switch(value: isRich, onChanged: (bool newValue) {
+            isRich = newValue;
+            runCustomApp(isRich);
+          }),
+          const Text("Rich"),
+        ],
+          mainAxisAlignment: MainAxisAlignment.center,
+        ),
       ),
     ),
   ),
