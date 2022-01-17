@@ -25,12 +25,14 @@ void runCustomApp(bool isRich) {
       bottomNavigationBar: BottomAppBar(
         color: getStatusColor(isRich),
         child: Row(children: [
-          const Text("Poor"),
+          const Text("Poor", style: TextStyle(fontFamily: "Comic Sans MS", fontWeight: FontWeight.bold, fontSize: 20),
+          ),
           Switch(value: isRich, onChanged: (bool newValue) {
             isRich = newValue;
             runCustomApp(isRich);
           }),
-          const Text("Rich"),
+          const Text("Rich", style: TextStyle(fontFamily: "Comic Sans MS", fontWeight: FontWeight.bold, fontSize: 20),
+          ),
         ],
           mainAxisAlignment: MainAxisAlignment.center,
         ),
