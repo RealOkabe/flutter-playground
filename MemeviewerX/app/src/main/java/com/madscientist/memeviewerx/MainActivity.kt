@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import com.madscientist.memeviewerx.util.Constants
 import okhttp3.*
+import org.json.JSONArray
+import org.json.JSONObject
 import java.io.IOException
 import java.lang.Exception
 
@@ -19,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun fetchMemes() {
+    private fun fetchMemes() {
         val request = Request.Builder().url(Constants.MEME_URL).build()
         val call = OkHttpClient().newCall(request)
         call.enqueue(object : Callback {
@@ -29,7 +31,15 @@ class MainActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call, response: Response) {
                 val body = response.body()
-                Log.d("*****", body!!.string())
+                val jsonObject = JSONObject(body!!.string()).getJSONObject("data")
+                val jsonArray = jsonObject.getJSONArray("memes")
+                val memeNames = ArrayList<String>()
+                val memeUrls = ArrayList<String>()
+                for(meme in 0..jsonArray.length() - 1) {
+                    val memeObject = jsonArray.getJSONObject(meme)
+                    memeNames.add(memeObject.get("name") as String)
+                    memeUrls.add(memeObject.get("url") as String)
+                }
             }
 
         })
