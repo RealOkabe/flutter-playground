@@ -1,10 +1,14 @@
 package com.madscientist.memeviewerx
 
-import android.graphics.BitmapFactory
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.madscientist.memeviewerx.util.Constants
 import okhttp3.*
 import org.json.JSONObject
@@ -43,8 +47,16 @@ class MainActivity : AppCompatActivity() {
                     memeUrls.add(memeObject.get("url") as String)
                 }
                 for(i in 0 until memeUrls.size) {
-                    val imageStream = java.net.URL(memeUrls[i]).openStream()
-                    memeList[i].memeImage = BitmapFactory.decodeStream(imageStream)
+                    Glide.with(applicationContext)
+                        .asBitmap()
+                        .load(memeUrls[i])
+                        .into(object : CustomTarget<Bitmap>(){
+                            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                                memeList[i].memeImage = resource
+                            }
+                            override fun onLoadCleared(placeholder: Drawable?) {
+                            }
+                        })
                 }
                 runOnUiThread {
                     memeView!!.adapter = MemeAdapter(memeList)
