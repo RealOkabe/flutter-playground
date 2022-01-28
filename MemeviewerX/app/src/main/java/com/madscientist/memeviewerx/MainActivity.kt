@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.madscientist.memeviewerx.util.Constants
 import okhttp3.*
 import org.json.JSONObject
@@ -24,6 +25,10 @@ class MainActivity : AppCompatActivity() {
             fetchMemes()
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+        val refreshButton = findViewById<FloatingActionButton>(R.id.refreshButton)
+        refreshButton.setOnClickListener {
+            fetchMemes()
         }
     }
 
