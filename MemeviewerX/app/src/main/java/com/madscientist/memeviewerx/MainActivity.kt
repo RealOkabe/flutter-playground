@@ -40,6 +40,12 @@ class MainActivity : AppCompatActivity() {
                 e.printStackTrace()
             }
 
+            // {name: "sdikujdfask". "url": "dskjasdfklf"}
+            // Serialization of JSON
+            // Try using coroutines
+            // Dependency Injection
+            // Unit Tests
+
             override fun onResponse(call: Call, response: Response) {
                 val body = response.body()
                 val jsonObject = JSONObject(body!!.string()).getJSONObject("data")

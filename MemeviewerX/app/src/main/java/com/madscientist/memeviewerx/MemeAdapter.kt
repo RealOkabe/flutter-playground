@@ -28,7 +28,7 @@ class MemeAdapter(val memeList: List<Meme>): RecyclerView.Adapter<MemeAdapter.Me
 
     // This binds actual data to the layout
     override fun onBindViewHolder(holder: MemeViewHolder, position: Int) {
-        var loopPosition = position % memeList.size
+        val loopPosition = position % memeList.size
         holder.memeName.text = memeList[loopPosition].memeName
         holder.memeImage.setImageBitmap(memeList[loopPosition].memeImage)
     }
