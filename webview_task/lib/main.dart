@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 const url = "https://www.kickstarter.com";
 
@@ -7,10 +8,12 @@ void main() {
 }
 
 void runWebviewApp() {
+  WebViewController controller;
   runApp(MaterialApp(
     home: Scaffold(
-      appBar: AppBar(
-        title: const Text(url),
+      body: const WebView(
+        initialUrl: url,
+        javascriptMode: JavascriptMode.unrestricted,
       ),
     ),
   )
