@@ -14,6 +14,7 @@ void runWebviewApp() {
       body: const WebView(
         initialUrl: url,
         javascriptMode: JavascriptMode.unrestricted,
+        userAgent: "random",
       ),
     ),
   )
